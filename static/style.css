@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+html, body {
+    text-align: center;
+    background-color: rgb(188, 138, 74);
+}
+
+h1, h2 {
+    font-family: 'Pixelify Sans';
+}
+
+
+
+.form-label {
+    font-family: 'Pixelify Sans';
+    color: rgb(147, 111, 20);
+}
+
+.form-text {
+    font-weight: 350;
+    font-style: italic;
+    font-family: 'Pixelify Sans';
+}
+
+.container {
+    border-radius: 8px;
+}
