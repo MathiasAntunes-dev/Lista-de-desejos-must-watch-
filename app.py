@@ -18,8 +18,11 @@ def agenda():
         titulo_tarefa = request.form['titulo-tarefa']
         data_conclusao = request.form['data-conclusao']
         tipo = request.form['tipo']
+
         tarefa = Tarefa(titulo_tarefa, data_conclusao, tipo)
         tarefa.salvar_tarefa()
+
+        return redirect(url_for('agenda'))
 
     tarefas = Tarefa.obter_tarefas()
     return render_template('lista.html', titulo='Agenda de Lazer', tarefas=tarefas)
@@ -43,3 +46,10 @@ def update(idTarefa):
     tarefas = Tarefa.obter_tarefas()
     tarefa_selecionada = Tarefa.id(idTarefa)
     return render_template('lista.html', titulo=f'Editando a tarefa ID: {idTarefa}', tarefas=tarefas, tarefa_selecionada=tarefa_selecionada)
+
+@app.route("/toggle/<int:id>", methods=["POST"])
+def toggle(id):
+    tarefa = Tarefa.id(id)
+    tarefa.toggle_conclusao()
+
+    return ("", 204)

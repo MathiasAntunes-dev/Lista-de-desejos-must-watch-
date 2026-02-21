@@ -42,7 +42,7 @@
     <div class="lista-container">
 
         {% for tarefa in tarefas %}
-            <div class="tarefa-card">
+            <div class="tarefa-card {% if tarefa.concluida %}concluida{% endif %}">
 
                 <div class="tarefa-info">
                     <span class="tarefa-titulo">{{ tarefa.titulo_tarefa }}</span>
@@ -58,8 +58,21 @@
                     <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn btn-danger btn-sm">
                         🗑️ Apagar
                     </a>
-                </div>
 
+                    <button
+                        type="button"
+                        class="btn-toggle {% if tarefa.concluida %}reabrir{% else %}concluir{% endif %}"
+                        data-id="{{ tarefa.id_tarefa }}"
+                        onclick="toggleStatus(this)">
+
+                        {% if tarefa.concluida %}
+                            🔴 Reabrir
+                        {% else %}
+                            🟢 Concluir
+                        {% endif %}
+                    </button>
+
+                </div>
             </div>
         {% endfor %}
 
@@ -68,5 +81,15 @@
     {% else %}
         <p class="nenhuma-tarefa">Nenhuma tarefa cadastrada.</p>
     {% endif %}
+
+    <script>
+        function toggleStatus(element) {
+            const id = element.dataset.id;
+
+            fetch(`/toggle/${id}`, {
+                method: "POST"
+            }).then(() => location.reload())
+        }
+    </script>
 
 {% endblock %}

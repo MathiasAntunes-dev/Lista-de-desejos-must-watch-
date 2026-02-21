@@ -156,3 +156,24 @@ a {
     transition: 0.4s;
     font-weight: bold;
 }
+
+.concluida {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.btn-toggle {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.concluir {
+    background: #28a745;
+}
+
+.reabrir {
+    background: #dc3545;
+}
