@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import traceback
 import os
 
-load_dotenv() # Procura um arquivo .env com variáveis
+load_dotenv()
 DB_PATH = os.getenv('DATABASE', './data/tarefas.sqlite3')
 
 def init_db(db_name: str = DB_PATH) -> None:
@@ -14,8 +14,9 @@ def init_db(db_name: str = DB_PATH) -> None:
         CREATE TABLE IF NOT EXISTS tarefas(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             titulo_tarefa TEXT NOT NULL,
-            data_conclusao TEXT
-        );
+            data_conclusao TEXT,
+            tipo TEXT
+        );              
         """)
  
 class Database:
@@ -38,13 +39,9 @@ class Database:
     def close(self) -> None:
         self.connection.close()
 
-    
-    # Métodos para o gerenciamento de contexto
-    # Método de entrada no contexto
     def __enter__(self) -> Self:
         return self
     
-    # Método de saída do contexto
     def __exit__(
             self,
             exc_type: Optional[Type[BaseException]],

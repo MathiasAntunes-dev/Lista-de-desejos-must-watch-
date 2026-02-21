@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 <link rel="stylesheet" href="{{  url_for('static', filename= 'style.css') }}">
 {% block content %}
-    <p>Seja bem-vindo</p>
+    <p class="form-label">Seja bem-vindo!</p>
     <br>
-    <h2>Bem vindo, essa pagina é destinada a uma lista de livros que eu gostaria de ler teste. <br> divirta-se!</h2>
+    <h2 class="mb-3">Bem vindo, essa pagina é destinada a uma lista de lazeres que eu gostaria de fazer. <br> divirta-se!</h2>
     <br>
     <br>
-    <footer><a href="/lista">Lista</a></footer>
+    <footer><a class="form-label" href="/lista">Agenda de Lazer</a></footer>
 {% endblock %}

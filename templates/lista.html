@@ -6,7 +6,7 @@
         <div class="mb-3">
             <label for="titulo-tarefa" class="form-label">Título da tarefa</label>
             <input type="text" class="form-control" name="titulo-tarefa" id="titulo-tarefa" aria-describedby="ajudaNomeTarefa" value="{{ tarefa_selecionada.titulo_tarefa if tarefa_selecionada else '' }}" required>
-            <div id="ajudaNomeTarefa" class="form-text">Use um nome de tarefa que seja descritivo.</div>
+            <div id="ajudaNomeTarefa" class="form-text">Use um nome de lazer que seja descritivo.</div>
         </div>
 
         <div class="mb-3">
@@ -14,47 +14,59 @@
             <input type="date" class="form-control" id="data-conclusao" name="data-conclusao" id="data-conclusao" value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo de Must View</label>
+            <select class="form-control" id="tipo" name="tipo">
+                <option value="">Selecione...</option>
+                <option value="Filme" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Filme' else '' }}>🎬 Filme</option>
+                <option value="Série" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Série' else '' }}>📺 Série</option>
+                <option value="Jogo" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Jogo' else '' }}>🎮 Jogo</option>
+                <option value="Livro" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Livro' else '' }}>📚 Livro</option>
+                <option value="Outro" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Outro' else '' }}>⭐ Outro</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-editar btn-primary">💾</button>
 
         {% if tarefa_selecionada %}
-            <a href="{{ url_for('lista') }}" class="btm btn-secundary">Cancelar</a>
+            <button type="submit" class="btn-editar btn-secundary">
+                <a href="{{ url_for('agenda') }}">❌</a>
+            </button>
         {% endif %}
     </form>
 
-    <h2 class="my-3">Must View</h2>
+   <h2 class="my-4">Must View</h2>
 
-        {% if tarefas %}
+    {% if tarefas %}
 
-            <ul>
-                {% for tarefa in tarefas %}
-                    <li>{{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }} 
-                        <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn btn-danger">🗑️ Apagar</a> 
-                        <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn btn-primary">📝 Editar</a>
-                    </li>
-                {% endfor %}
-            </ul>
+    <div class="lista-container">
 
-        {% else %}
+        {% for tarefa in tarefas %}
+            <div class="tarefa-card">
 
-            <p>Nenhuma livro cadastrada</p>
+                <div class="tarefa-info">
+                    <span class="tarefa-titulo">{{ tarefa.titulo_tarefa }}</span>
+                    <span class="tarefa-data">{{ tarefa.data_conclusao }}</span>
+                    <span class="tarefa-tipo">{{ tarefa.tipo }}</span>
+                </div>
 
-        {% endif %}
+                <div class="tarefa-botoes">
+                    <a href="{{ url_for('update', idTarefa=tarefa.id_tarefa) }}" class="btn btn-primary btn-sm">
+                        ✏️ Editar
+                    </a>
+
+                    <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}" class="btn btn-danger btn-sm">
+                        🗑️ Apagar
+                    </a>
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+        <p class="nenhuma-tarefa">Nenhuma tarefa cadastrada.</p>
+    {% endif %}
 
 {% endblock %}
-
-
-<!--métodos HTTP:
-GET ->"pega"(recupera/obtem) as informações
-POST -> "envia" (cadastra/imclui/adiciona) as informações
-UPDATE/PATCH -> "atualiza" as informações (UPDATE)
-DELETE -> "apaga" as informações (DELETE)
-
-CRUD -> CREATE, READ, UPDATE, DELETE
--->
-
-<!--
-2XX - Sucesso
-3XX - Sucesso, mas redirecionado
-4XX - Não encontrado (falha na REQUISIÇÃO)
-5XX - Erro do servidor (falha na RESPOSTA)
--->

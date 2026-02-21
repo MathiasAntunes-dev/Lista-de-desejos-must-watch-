@@ -1,27 +1,158 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
-html, body {
-    text-align: center;
-    background-color: rgb(188, 138, 74);
+html {
+    background: radial-gradient(rgb(78, 57, 38), rgb(156, 104, 55));
 }
 
-h1, h2 {
-    font-family: 'Pixelify Sans';
+.lista-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
 }
 
-
-
-.form-label {
-    font-family: 'Pixelify Sans';
-    color: rgb(147, 111, 20);
+.tarefa-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(255, 244, 231);
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: 0.2s;
 }
 
-.form-text {
-    font-weight: 350;
-    font-style: italic;
-    font-family: 'Pixelify Sans';
+.tarefa-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.tarefa-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.tarefa-titulo {
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(65, 45, 19);
+}
+
+.tarefa-data {
+    font-size: 13px;
+    color: gray;
+}
+
+.tarefa-botoes {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    background: #b08f70;
+    padding: 6px 10px;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: #7d6650;
+    transform: scale(1.05);
+    transition: 0.2s;   
+}
+
+.btn-editar {
+    background: #d0aa86;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    transition: 0.2s;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.btn-editar:hover {
+    background: #b3906e;
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    transition: 0.2s;   
 }
 
 .container {
-    border-radius: 8px;
+    margin-top: 100px;
+    background: #be8e61;
+    padding: 20px; 
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow:  2px 2px 10px 5px rgba(0, 0, 0, 0.2)
+}
+
+h1{
+        font-family: 'Pixelify Sans';
+        color: #ffffff;
+        font-size: 50px;
+        transition: 0.4s;
+}
+
+h2{
+    font-family: 'Pixelify Sans';
+    color: #ffffff;
+    font-size: 40px;
+    transition: 0.4s;
+
+}
+
+h1:hover, h2:hover{
+    transform: translateY(-2px);
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+.mb-3 {
+    background-color: #dbb28c;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}   
+
+.my-4{
+    text-align: center;
+}
+
+.tarefa-tipo {
+    font-size: 12px;
+    color: #8a6d4f;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.form-label {
+    font-family: 'Pixelify Sans';
+    color: rgb(65, 45, 19);
+    font-weight: 600;
+}
+
+.form-text {
+    font-style: italic;
+    color: rgb(65, 45, 19);
+}
+
+a {
+    text-decoration: none;
+}
+
+.nenhuma-tarefa{
+    text-align: center;
+    margin: 0;
+    font-family: 'Pixelify Sans';
+    color: rgb(65, 45, 19);
+    font-weight: 600;   
+}
+
+.nenhuma-tarefa:hover {
+    transform: translateY(-2px);
+    transition: 0.4s;
+    font-weight: bold;
 }
