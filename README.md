@@ -1,4 +1,4 @@
-# Agenda em Python usando Flask
+# Must View em Python usando Flask
 
 O Must View é uma aplicação web desenvolvida em Flask para organizar conteúdos que você deseja assistir, jogar ou ler. Com uma interface simples e estilizada, o sistema permite cadastrar itens como filmes, séries, jogos e livros, além de acompanhar datas de conclusão e editar ou remover registros facilmente.
 
