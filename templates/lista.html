@@ -4,28 +4,34 @@
     <form class="mt-3" method="POST">
 
         <div class="mb-3">
-            <label for="titulo-tarefa" class="form-label">Título da tarefa</label>
+            <label for="titulo-tarefa" class="form-label">Título da tarefa:</label>
             <input type="text" class="form-control" name="titulo-tarefa" id="titulo-tarefa" aria-describedby="ajudaNomeTarefa" value="{{ tarefa_selecionada.titulo_tarefa if tarefa_selecionada else '' }}" required>
             <div id="ajudaNomeTarefa" class="form-text">Use um nome de lazer que seja descritivo.</div>
         </div>
 
         <div class="mb-3">
-            <label for="data-conclusao" class="form-label">Data de conclusão</label>
+            <label for="data-conclusao" class="form-label">Data de conclusão:</label>
             <input type="date" class="form-control" id="data-conclusao" name="data-conclusao" id="data-conclusao" value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else '' }}">
         </div>
-
+        
+        
         <div class="mb-3">
-            <label for="tipo" class="form-label">Tipo de Must View</label>
+            <label for="tipo" class="form-label">Tipo de Must View:</label>
             <select class="form-control" id="tipo" name="tipo">
                 <option value="">Selecione...</option>
-                <option value="Filme" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Filme' else '' }}>🎬 Filme</option>
-                <option value="Série" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Série' else '' }}>📺 Série</option>
-                <option value="Jogo" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Jogo' else '' }}>🎮 Jogo</option>
-                <option value="Livro" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Livro' else '' }}>📚 Livro</option>
-                <option value="Outro" {{ 'selected' if tarefa_selecionada and tarefa_selecionada.tipo == 'Outro' else '' }}>⭐ Outro</option>
+                <option value="Filme" {% if tarefa_selecionada and tarefa_selecionada.tipo == 'Filme' %}selected{% endif %}>🎬 Filme</option>
+                <option value="Série" {% if tarefa_selecionada and tarefa_selecionada.tipo == 'Série' %}selected{% endif %}>📺 Série</option>
+                <option value="Jogo" {% if tarefa_selecionada and tarefa_selecionada.tipo == 'Jogo' %}selected{% endif %}>🎮 Jogo</option>
+                <option value="Livro" {% if tarefa_selecionada and tarefa_selecionada.tipo == 'Livro' %}selected{% endif %}>📚 Livro</option>
+                <option value="Outro" {% if tarefa_selecionada and tarefa_selecionada.tipo == 'Outro' %}selected{% endif %}>⭐ Outro</option>
             </select>
         </div>
-
+        
+        <div class="mb-3">
+            <label for="indicado" class="form-label">Indicado por:</label>
+            <input type="text" class="form-control" id="indicado" name="indicado" value="{{ tarefa_selecionada.indicado if tarefa_selecionada else '' }}">
+        </div>
+        
         <button type="submit" class="btn-editar btn-primary">💾</button>
 
         {% if tarefa_selecionada %}
@@ -48,6 +54,7 @@
                     <span class="tarefa-titulo">{{ tarefa.titulo_tarefa }}</span>
                     <span class="tarefa-data">{{ tarefa.data_conclusao }}</span>
                     <span class="tarefa-tipo">{{ tarefa.tipo }}</span>
+                    <span class="tarefa-indicado">{{ tarefa.indicado }}</span>
                 </div>
 
                 <div class="tarefa-botoes">
@@ -66,12 +73,11 @@
                         onclick="toggleStatus(this)">
 
                         {% if tarefa.concluida %}
-                            🔴 Reabrir
+                            ⛔
                         {% else %}
-                            🟢 Concluir
+                            ✅
                         {% endif %}
                     </button>
-
                 </div>
             </div>
         {% endfor %}

@@ -17,7 +17,8 @@ def init_db(db_name: str = DB_PATH) -> None:
             data_conclusao TEXT,
             tipo TEXT,
             concluida INTEGER DEFAULT 0,
-            data_finalizacao TEXT
+            data_finalizacao TEXT,
+            indicado TEXT        
         );              
         """)
  

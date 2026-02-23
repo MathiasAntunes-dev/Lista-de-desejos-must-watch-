@@ -18,14 +18,15 @@ def agenda():
         titulo_tarefa = request.form['titulo-tarefa']
         data_conclusao = request.form['data-conclusao']
         tipo = request.form['tipo']
+        indicado = request.form['indicado']
 
-        tarefa = Tarefa(titulo_tarefa, data_conclusao, tipo)
+        tarefa = Tarefa(titulo_tarefa, data_conclusao, tipo, indicado=indicado)
         tarefa.salvar_tarefa()
 
         return redirect(url_for('agenda'))
 
     tarefas = Tarefa.obter_tarefas()
-    return render_template('lista.html', titulo='Agenda de Lazer', tarefas=tarefas)
+    return render_template('lista.html', titulo='Lista de Lazer', tarefas=tarefas)
 
 @app.route('/delete/<int:idTarefa>')
 def delete(idTarefa):
@@ -35,11 +36,15 @@ def delete(idTarefa):
 
 @app.route('/update/<int:idTarefa>', methods=['GET', 'POST'])
 def update(idTarefa):
+
+
+    
     if request.method == 'POST':
         titulo = request.form['titulo-tarefa']
         data = request.form['data-conclusao']
         tipo = request.form['tipo']
-        tarefa = Tarefa(titulo, data, tipo, idTarefa)
+        indicado = request.form['indicado']
+        tarefa = Tarefa(titulo, data, tipo, idTarefa, indicado=indicado)
         tarefa.atualizar_tarefa()
         return redirect(url_for('agenda'))
 

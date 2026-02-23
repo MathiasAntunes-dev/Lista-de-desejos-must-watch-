@@ -39,7 +39,7 @@ html {
     color: rgb(65, 45, 19);
 }
 
-.tarefa-data {
+.tarefa-data, .tarefa-indicado {
     font-size: 13px;
     color: gray;
 }
@@ -79,7 +79,8 @@ html {
 }
 
 .container {
-    margin-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     background: #be8e61;
     padding: 20px; 
     padding-top: 10px;
@@ -159,7 +160,7 @@ a {
 
 .concluida {
     opacity: 0.6;
-    text-decoration: line-through;
+    text-decoration: line-through;   
 }
 
 .btn-toggle {
@@ -174,6 +175,20 @@ a {
     background: #28a745;
 }
 
+.concluir:hover {
+    background: #23903c;
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    transition: 0.2s;
+}
+
 .reabrir {
     background: #dc3545;
+}
+
+.reabrir:hover {
+    background: #ab2a37;
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    transition: 0.2s;
 }
