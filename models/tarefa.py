@@ -57,7 +57,7 @@ class Tarefa:
     def atualizar_tarefa(self: Self):
         with Database() as db:
             query: str = "UPDATE tarefas SET titulo_tarefa = ?, data_conclusao = ?, tipo = ?, indicado = ? WHERE id = ?;"
-            params: tuple = (self.titulo_tarefa, self.data_conclusao, self.tipo, self.id_tarefa)
+            params: tuple = (self.titulo_tarefa, self.data_conclusao, self.tipo, self.indicado, self.id_tarefa)
             resultado: Cursor = db.executar(query, params)
             return resultado
         
